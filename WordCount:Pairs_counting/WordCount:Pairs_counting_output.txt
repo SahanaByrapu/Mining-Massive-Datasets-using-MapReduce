@@ -1,0 +1,717 @@
+[mpitale@perseus 657]$ python3 part1.py
+2022-09-28 14:26:23,882 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2022-09-28 14:26:32,071 WARN impl.BlockReaderFactory: I/O error constructing remote block reader.
+java.nio.channels.ClosedByInterruptException
+        at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+        at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:658)
+        at org.apache.hadoop.net.SocketIOWithTimeout.connect(SocketIOWithTimeout.java:192)
+        at org.apache.hadoop.net.NetUtils.connect(NetUtils.java:531)
+        at org.apache.hadoop.hdfs.DFSClient.newConnectedPeer(DFSClient.java:2939)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.nextTcpPeer(BlockReaderFactory.java:821)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.getRemoteBlockReaderFromTcp(BlockReaderFactory.java:746)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.build(BlockReaderFactory.java:379)
+        at org.apache.hadoop.hdfs.DFSInputStream.getBlockReader(DFSInputStream.java:644)
+        at org.apache.hadoop.hdfs.DFSInputStream.blockSeekTo(DFSInputStream.java:575)
+        at org.apache.hadoop.hdfs.DFSInputStream.readWithStrategy(DFSInputStream.java:757)
+        at org.apache.hadoop.hdfs.DFSInputStream.read(DFSInputStream.java:829)
+        at java.io.DataInputStream.read(DataInputStream.java:100)
+        at org.sparkproject.guava.io.ByteStreams.copy(ByteStreams.java:207)
+        at org.sparkproject.guava.io.ByteStreams.toByteArray(ByteStreams.java:252)
+        at org.apache.spark.input.WholeTextFileRecordReader.nextKeyValue(WholeTextFileRecordReader.scala:79)
+        at org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader.nextKeyValue(CombineFileRecordReader.java:65)
+        at org.apache.spark.rdd.NewHadoopRDD$$anon$1.hasNext(NewHadoopRDD.scala:247)
+        at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+        at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:458)
+        at scala.collection.Iterator.foreach(Iterator.scala:941)
+        at scala.collection.Iterator.foreach$(Iterator.scala:941)
+        at scala.collection.AbstractIterator.foreach(Iterator.scala:1429)
+        at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:307)
+        at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:621)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:397)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1996)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:232)
+2022-09-28 14:26:32,265 WARN impl.BlockReaderFactory: I/O error constructing remote block reader.
+java.nio.channels.ClosedByInterruptException
+        at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+        at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:658)
+        at org.apache.hadoop.net.SocketIOWithTimeout.connect(SocketIOWithTimeout.java:192)
+        at org.apache.hadoop.net.NetUtils.connect(NetUtils.java:531)
+        at org.apache.hadoop.hdfs.DFSClient.newConnectedPeer(DFSClient.java:2939)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.nextTcpPeer(BlockReaderFactory.java:821)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.getRemoteBlockReaderFromTcp(BlockReaderFactory.java:746)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.build(BlockReaderFactory.java:379)
+        at org.apache.hadoop.hdfs.DFSInputStream.getBlockReader(DFSInputStream.java:644)
+        at org.apache.hadoop.hdfs.DFSInputStream.blockSeekTo(DFSInputStream.java:575)
+        at org.apache.hadoop.hdfs.DFSInputStream.readWithStrategy(DFSInputStream.java:757)
+        at org.apache.hadoop.hdfs.DFSInputStream.read(DFSInputStream.java:829)
+        at java.io.DataInputStream.read(DataInputStream.java:100)
+        at org.sparkproject.guava.io.ByteStreams.copy(ByteStreams.java:207)
+        at org.sparkproject.guava.io.ByteStreams.toByteArray(ByteStreams.java:252)
+        at org.apache.spark.input.WholeTextFileRecordReader.nextKeyValue(WholeTextFileRecordReader.scala:79)
+        at org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader.nextKeyValue(CombineFileRecordReader.java:65)
+        at org.apache.spark.rdd.NewHadoopRDD$$anon$1.hasNext(NewHadoopRDD.scala:247)
+        at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+        at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:458)
+        at scala.collection.Iterator.foreach(Iterator.scala:941)
+        at scala.collection.Iterator.foreach$(Iterator.scala:941)
+        at scala.collection.AbstractIterator.foreach(Iterator.scala:1429)
+        at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:307)
+        at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:621)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:397)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1996)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:232)
++----+--------------------+
+|year|               words|
++----+--------------------+
+|1790|[fellow, citizens...|
+|1791|[fellow, citizens...|
+|1792|[fellow, citizens...|
+|1793|[fellow, citizens...|
+|1794|[fellow, citizens...|
+|1795|[fellow, citizens...|
+|1796|[fellow, citizens...|
+|1797|[gentlemen, senat...|
+|1798|[gentlemen, senat...|
+|1799|[gentlemen, senat...|
+|1800|[gentlemen, senat...|
+|1801|[fellow, citizens...|
+|1802|[senate, house, r...|
+|1803|[senate, house, r...|
+|1804|[senate, house, r...|
+|1805|[senate, house, r...|
+|1806|[senate, house, r...|
+|1807|[senate, house, r...|
+|1808|[senate, house, r...|
+|1809|[fellow, citizens...|
++----+--------------------+
+only showing top 20 rows
+
++----+----------------+
+|year|            word|
++----+----------------+
+|1790|          fellow|
+|1790|        citizens|
+|1790|          senate|
+|1790|           house|
+|1790|representatives:|
+|1790|         meeting|
+|1790|            feel|
+|1790|            much|
+|1790|    satisfaction|
+|1790|            able|
+|1790|          repeat|
+|1790| congratulations|
+|1790|       favorable|
+|1790|       prospects|
+|1790|        continue|
+|1790|     distinguish|
+|1790|          public|
+|1790|         affairs|
+|1790|        abundant|
+|1790|          fruits|
++----+----------------+
+only showing top 20 rows
+
++----+-------------+-----+
+|year|         word|count|
++----+-------------+-----+
+|2009|       madame|    1|
+|2009|      speaker|    1|
+|2009|           mr|    1|
+|2009|         vice|    1|
+|2009|    president|    1|
+|2009|      members|    1|
+|2009|     congress|    1|
+|2009|        first|    1|
+|2009|         lady|    1|
+|2009|       united|    1|
+|2009|      states:|    1|
+|2009|           ve|    1|
+|2009|         come|    1|
+|2009|      tonight|    1|
+|2009|      address|    1|
+|2009|distinguished|    1|
+|2009|          men|    1|
+|2009|        women|    1|
+|2009|        great|    1|
+|2009|      chamber|    1|
++----+-------------+-----+
+only showing top 20 rows
+
++----+----------+-----+
+|year|      word|count|
++----+----------+-----+
+|2009|   working|    4|
+|2009|  progress|    3|
+|2009|   arrived|    2|
+|2009|  continue|    2|
+|2009|flawlessly|    1|
+|2009|     house|    1|
+|2009|  millions|    2|
+|2009|     civil|    1|
+|2009|     skill|    1|
+|2009|  increase|    1|
+|2010|     union|    5|
+|2010|      move|    5|
+|2010|   economy|   15|
+|2010|   phoenix|    1|
+|2010|   exports|    2|
+|2010|   getting|    1|
+|2010|  straight|    1|
+|2011|   finding|    1|
+|2011|  colleges|    3|
+|2011|      meet|    5|
++----+----------+-----+
+only showing top 20 rows
+
++---------+---------+-------+
+|    years|     word|average|
++---------+---------+-------+
+|2021-2025|  america|   47.0|
+|2021-2025| american|   46.0|
+|2021-2025|     jobs|   43.0|
+|2017-2021| american|   33.5|
+|2013-2017|  america|   31.0|
+|2017-2021|  america|  30.25|
+|2021-2025|   people|   28.0|
+|2013-2017|      new|   27.5|
+|2009-2013|   people|   27.0|
+|2021-2025|     plan|   26.0|
+|2009-2013|      new|  25.75|
+|2013-2017|       us|  25.25|
+|2009-2013|  america|   25.0|
+|2021-2025|americans|   25.0|
+|2009-2013| american|   24.0|
+|2009-2013|     jobs|  23.75|
+|2021-2025|      one|   23.0|
+|2013-2017|   people|   22.0|
+|2021-2025|    world|   22.0|
+|2017-2021|      new|   22.0|
++---------+---------+-------+
+only showing top 20 rows
+
++---------------+---------+------------+
+|           word|    years|      counts|
++---------------+---------+------------+
+|         nation|2013-2017|[6, 7, 5, 6]|
+|         always|2017-2021|[4, 2, 8, 9]|
+|        partner|2021-2025|         [1]|
+|          1990s|2021-2025|         [1]|
+|       sweeping|2017-2021|   [1, 1, 1]|
+|       products|2021-2025|         [2]|
+|        propose|2013-2017|         [3]|
+|         credit|2017-2021|[1, 1, 1, 1]|
+|      condition|2017-2021|         [1]|
+|congratulations|2017-2021|      [1, 1]|
+|        respect|2017-2021|[3, 1, 4, 1]|
+|         obsess|2009-2013|         [1]|
+|     litigation|2013-2017|         [1]|
+|      somewhere|2013-2017|         [1]|
+|     excitement|2017-2021|         [1]|
+|           cast|2013-2017|   [1, 1, 1]|
+|    inheritance|2017-2021|      [1, 1]|
+|          rests|2017-2021|         [1]|
+|     spacecraft|2013-2017|         [1]|
+|        dealing|2009-2013|         [2]|
++---------------+---------+------------+
+only showing top 20 rows
+
++---------------+---------+------+----+
+|           word|    years|stddev| avg|
++---------------+---------+------+----+
+|         nation|2013-2017|  0.71|   6|
+|         always|2017-2021|  2.86|5.75|
+|        partner|2021-2025|     1|   1|
+|          1990s|2021-2025|     1|   1|
+|       sweeping|2017-2021|   0.0|   1|
+|       products|2021-2025|     2|   2|
+|        propose|2013-2017|     3|   3|
+|         credit|2017-2021|   0.0|   1|
+|      condition|2017-2021|     1|   1|
+|congratulations|2017-2021|   0.0|   1|
+|        respect|2017-2021|   1.3|2.25|
+|         obsess|2009-2013|     1|   1|
+|     litigation|2013-2017|     1|   1|
+|      somewhere|2013-2017|     1|   1|
+|     excitement|2017-2021|     1|   1|
+|           cast|2013-2017|   0.0|   1|
+|    inheritance|2017-2021|   0.0|   1|
+|          rests|2017-2021|     1|   1|
+|     spacecraft|2013-2017|     1|   1|
+|        dealing|2009-2013|     2|   2|
++---------------+---------+------+----+
+only showing top 20 rows
+
++---------------+---------+--------+------+----+
+|           word|    years|nextyear|stddev| avg|
++---------------+---------+--------+------+----+
+|         nation|2013-2017|    2018|  0.71|   6|
+|         always|2017-2021|    2022|  2.86|5.75|
+|        partner|2021-2025|    2026|     1|   1|
+|          1990s|2021-2025|    2026|     1|   1|
+|       sweeping|2017-2021|    2022|   0.0|   1|
+|       products|2021-2025|    2026|     2|   2|
+|        propose|2013-2017|    2018|     3|   3|
+|         credit|2017-2021|    2022|   0.0|   1|
+|      condition|2017-2021|    2022|     1|   1|
+|congratulations|2017-2021|    2022|   0.0|   1|
+|        respect|2017-2021|    2022|   1.3|2.25|
+|         obsess|2009-2013|    2014|     1|   1|
+|     litigation|2013-2017|    2018|     1|   1|
+|      somewhere|2013-2017|    2018|     1|   1|
+|     excitement|2017-2021|    2022|     1|   1|
+|           cast|2013-2017|    2018|   0.0|   1|
+|    inheritance|2017-2021|    2022|   0.0|   1|
+|          rests|2017-2021|    2022|     1|   1|
+|     spacecraft|2013-2017|    2018|     1|   1|
+|        dealing|2009-2013|    2014|     2|   2|
++---------------+---------+--------+------+----+
+only showing top 20 rows
+
++----+----------+-----+
+|year|      word|count|
++----+----------+-----+
+|2009|   working|    4|
+|2009|  progress|    3|
+|2009|   arrived|    2|
+|2009|  continue|    2|
+|2009|flawlessly|    1|
+|2009|     house|    1|
+|2009|  millions|    2|
+|2009|     civil|    1|
+|2009|     skill|    1|
+|2009|  increase|    1|
+|2010|     union|    5|
+|2010|      move|    5|
+|2010|   economy|   15|
+|2010|   phoenix|    1|
+|2010|   exports|    2|
+|2010|   getting|    1|
+|2010|  straight|    1|
+|2011|   finding|    1|
+|2011|  colleges|    3|
+|2011|      meet|    5|
++----+----------+-----+
+only showing top 20 rows
+
++----------+---------+--------+------+------------------+----+----------+-----+
+|      word|    years|nextyear|stddev|               avg|year|      word|count|
++----------+---------+--------+------+------------------+----+----------+-----+
+|        14|2013-2017|    2018|   0.0|                 1|2018|        14|    1|
+|       car|2013-2017|    2018|     1|                 1|2018|       car|    2|
+|     child|2009-2013|    2014|  2.86|              3.25|2014|     child|    5|
+|  daughter|2013-2017|    2018|     1|                 1|2018|  daughter|    1|
+| federally|2009-2013|    2014|     2|                 2|2014| federally|    2|
+|      free|2009-2013|    2014|  0.47|2.3333333333333335|2014|      free|    4|
+|       six|2009-2013|    2014|   0.0|                 1|2014|       six|    1|
+|    system|2009-2013|    2014|   1.3|              6.25|2014|    system|    3|
+|   weapons|2009-2013|    2014|  0.94|2.3333333333333335|2014|   weapons|    1|
+|      year|2013-2017|    2018|  1.48|             17.75|2018|      year|   19|
+|california|2013-2017|    2018|     1|                 1|2018|california|    3|
+|  civilian|2013-2017|    2018|   0.0|                 1|2018|  civilian|    1|
+|    deaths|2013-2017|    2018|     1|                 1|2018|    deaths|    1|
+|   dollars|2013-2017|    2018|  0.94|1.6666666666666667|2018|   dollars|    3|
+|     faith|2013-2017|    2018|   1.0|                 2|2018|     faith|    2|
+|      life|2013-2017|    2018|  1.41|                 3|2018|      life|    2|
+|   neither|2009-2013|    2014|   0.5|               1.5|2014|   neither|    2|
+|      news|2009-2013|    2014|     1|                 1|2014|      news|    1|
+|    remind|2009-2013|    2014|     1|                 1|2014|    remind|    1|
+|  training|2009-2013|    2014|  0.94|2.3333333333333335|2014|  training|    6|
++----------+---------+--------+------+------------------+----+----------+-----+
+only showing top 20 rows
+
++-----------+---------+--------+------+------------------+----+-----------+-----+
+|       word|    years|nextyear|stddev|               avg|year|       word|count|
++-----------+---------+--------+------+------------------+----+-----------+-----+
+|       free|2009-2013|    2014|  0.47|2.3333333333333335|2014|       free|    4|
+|   training|2009-2013|    2014|  0.94|2.3333333333333335|2014|   training|    6|
+|         20|2013-2017|    2018|   0.5|               1.5|2018|         20|    4|
+|  dangerous|2013-2017|    2018|  0.94|1.6666666666666667|2018|  dangerous|    5|
+|     dreams|2009-2013|    2014|  0.82|                 2|2014|     dreams|    6|
+|immigration|2009-2013|    2014|  0.47|1.3333333333333333|2014|immigration|    3|
+|     senate|2013-2017|    2018|   0.0|                 1|2018|     senate|    3|
+|     needed|2009-2013|    2014|   0.5|               1.5|2014|     needed|    4|
+|      seize|2009-2013|    2014|   0.0|                 1|2014|      seize|    2|
+|      dream|2013-2017|    2018|   0.5|               1.5|2018|      dream|    3|
+|      taken|2013-2017|    2018|  0.47|1.6666666666666667|2018|      taken|    3|
+|   building|2009-2013|    2014|  0.82|                 4|2014|   building|    6|
+|      class|2009-2013|    2014|  1.92|              3.25|2014|      class|    9|
+|    officer|2013-2017|    2018|   0.0|                 1|2018|    officer|    3|
+|      stand|2009-2013|    2014|  0.83|              3.25|2014|      stand|    5|
+|       love|2013-2017|    2018|  1.64|              2.25|2018|       love|    7|
+|communities|2009-2013|    2014|   1.3|              2.25|2014|communities|    7|
+|       sick|2009-2013|    2014|   0.0|                 1|2014|       sick|    3|
+|    threats|2009-2013|    2014|  0.43|              1.25|2014|    threats|    3|
+|   anything|2013-2017|    2018|   0.0|                 1|2018|   anything|    4|
++-----------+---------+--------+------+------------------+----+-----------+-----+
+only showing top 20 rows
+
+
+
+
+
+
+[mpitale@perseus 657]$ python3 part1.py
+2022-09-28 14:29:38,995 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2022-09-28 14:29:46,866 WARN ipc.Client: interrupted waiting to send rpc request to server
+java.lang.InterruptedException
+        at java.util.concurrent.FutureTask.awaitDone(FutureTask.java:404)
+        at java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at org.apache.hadoop.ipc.Client$Connection.sendRpcRequest(Client.java:1148)
+        at org.apache.hadoop.ipc.Client.call(Client.java:1409)
+        at org.apache.hadoop.ipc.Client.call(Client.java:1367)
+        at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:228)
+        at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:116)
+        at com.sun.proxy.$Proxy22.getBlockLocations(Unknown Source)
+        at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.getBlockLocations(ClientNamenodeProtocolTranslatorPB.java:320)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:422)
+        at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:165)
+        at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:157)
+        at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:95)
+        at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:359)
+        at com.sun.proxy.$Proxy23.getBlockLocations(Unknown Source)
+        at org.apache.hadoop.hdfs.DFSClient.callGetBlockLocations(DFSClient.java:863)
+        at org.apache.hadoop.hdfs.DFSClient.getLocatedBlocks(DFSClient.java:852)
+        at org.apache.hadoop.hdfs.DFSClient.getLocatedBlocks(DFSClient.java:841)
+        at org.apache.hadoop.hdfs.DFSClient.open(DFSClient.java:1009)
+        at org.apache.hadoop.hdfs.DistributedFileSystem$4.doCall(DistributedFileSystem.java:325)
+        at org.apache.hadoop.hdfs.DistributedFileSystem$4.doCall(DistributedFileSystem.java:321)
+        at org.apache.hadoop.fs.FileSystemLinkResolver.resolve(FileSystemLinkResolver.java:81)
+        at org.apache.hadoop.hdfs.DistributedFileSystem.open(DistributedFileSystem.java:333)
+        at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:899)
+        at org.apache.spark.input.WholeTextFileRecordReader.nextKeyValue(WholeTextFileRecordReader.scala:75)
+        at org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader.nextKeyValue(CombineFileRecordReader.java:65)
+        at org.apache.spark.rdd.NewHadoopRDD$$anon$1.hasNext(NewHadoopRDD.scala:247)
+        at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+        at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:458)
+        at scala.collection.Iterator.foreach(Iterator.scala:941)
+        at scala.collection.Iterator.foreach$(Iterator.scala:941)
+        at scala.collection.AbstractIterator.foreach(Iterator.scala:1429)
+        at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:307)
+        at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:621)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:397)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1996)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:232)
+2022-09-28 14:29:47,060 WARN impl.BlockReaderFactory: I/O error constructing remote block reader.
+java.nio.channels.ClosedByInterruptException
+        at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+        at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:658)
+        at org.apache.hadoop.net.SocketIOWithTimeout.connect(SocketIOWithTimeout.java:192)
+        at org.apache.hadoop.net.NetUtils.connect(NetUtils.java:531)
+        at org.apache.hadoop.hdfs.DFSClient.newConnectedPeer(DFSClient.java:2939)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.nextTcpPeer(BlockReaderFactory.java:821)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.getRemoteBlockReaderFromTcp(BlockReaderFactory.java:746)
+        at org.apache.hadoop.hdfs.client.impl.BlockReaderFactory.build(BlockReaderFactory.java:379)
+        at org.apache.hadoop.hdfs.DFSInputStream.getBlockReader(DFSInputStream.java:644)
+        at org.apache.hadoop.hdfs.DFSInputStream.blockSeekTo(DFSInputStream.java:575)
+        at org.apache.hadoop.hdfs.DFSInputStream.readWithStrategy(DFSInputStream.java:757)
+        at org.apache.hadoop.hdfs.DFSInputStream.read(DFSInputStream.java:829)
+        at java.io.DataInputStream.read(DataInputStream.java:100)
+        at org.sparkproject.guava.io.ByteStreams.copy(ByteStreams.java:207)
+        at org.sparkproject.guava.io.ByteStreams.toByteArray(ByteStreams.java:252)
+        at org.apache.spark.input.WholeTextFileRecordReader.nextKeyValue(WholeTextFileRecordReader.scala:79)
+        at org.apache.hadoop.mapreduce.lib.input.CombineFileRecordReader.nextKeyValue(CombineFileRecordReader.java:65)
+        at org.apache.spark.rdd.NewHadoopRDD$$anon$1.hasNext(NewHadoopRDD.scala:247)
+        at org.apache.spark.InterruptibleIterator.hasNext(InterruptibleIterator.scala:37)
+        at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:458)
+        at scala.collection.Iterator.foreach(Iterator.scala:941)
+        at scala.collection.Iterator.foreach$(Iterator.scala:941)
+        at scala.collection.AbstractIterator.foreach(Iterator.scala:1429)
+        at org.apache.spark.api.python.PythonRDD$.writeIteratorToStream(PythonRDD.scala:307)
+        at org.apache.spark.api.python.PythonRunner$$anon$2.writeIteratorToStream(PythonRunner.scala:621)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.$anonfun$run$1(PythonRunner.scala:397)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1996)
+        at org.apache.spark.api.python.BasePythonRunner$WriterThread.run(PythonRunner.scala:232)
++----+--------------------+
+|year|               words|
++----+--------------------+
+|1790|[fellow, citizens...|
+|1791|[fellow, citizens...|
+|1792|[fellow, citizens...|
+|1793|[fellow, citizens...|
+|1794|[fellow, citizens...|
+|1795|[fellow, citizens...|
+|1796|[fellow, citizens...|
+|1797|[gentlemen, senat...|
+|1798|[gentlemen, senat...|
+|1799|[gentlemen, senat...|
+|1800|[gentlemen, senat...|
+|1801|[fellow, citizens...|
+|1802|[senate, house, r...|
+|1803|[senate, house, r...|
+|1804|[senate, house, r...|
+|1805|[senate, house, r...|
+|1806|[senate, house, r...|
+|1807|[senate, house, r...|
+|1808|[senate, house, r...|
+|1809|[fellow, citizens...|
++----+--------------------+
+only showing top 20 rows
+
++----+----------------+
+|year|            word|
++----+----------------+
+|1790|          fellow|
+|1790|        citizens|
+|1790|          senate|
+|1790|           house|
+|1790|representatives:|
+|1790|         meeting|
+|1790|            feel|
+|1790|            much|
+|1790|    satisfaction|
+|1790|            able|
+|1790|          repeat|
+|1790| congratulations|
+|1790|       favorable|
+|1790|       prospects|
+|1790|        continue|
+|1790|     distinguish|
+|1790|          public|
+|1790|         affairs|
+|1790|        abundant|
+|1790|          fruits|
++----+----------------+
+only showing top 20 rows
+
++----+-------------+-----+
+|year|         word|count|
++----+-------------+-----+
+|2009|       madame|    1|
+|2009|      speaker|    1|
+|2009|           mr|    1|
+|2009|         vice|    1|
+|2009|    president|    1|
+|2009|      members|    1|
+|2009|     congress|    1|
+|2009|        first|    1|
+|2009|         lady|    1|
+|2009|       united|    1|
+|2009|      states:|    1|
+|2009|           ve|    1|
+|2009|         come|    1|
+|2009|      tonight|    1|
+|2009|      address|    1|
+|2009|distinguished|    1|
+|2009|          men|    1|
+|2009|        women|    1|
+|2009|        great|    1|
+|2009|      chamber|    1|
++----+-------------+-----+
+only showing top 20 rows
+
++----+----------+-----+
+|year|      word|count|
++----+----------+-----+
+|2009|   working|    4|
+|2009|  progress|    3|
+|2009|   arrived|    2|
+|2009|  continue|    2|
+|2009|flawlessly|    1|
+|2009|     house|    1|
+|2009|  millions|    2|
+|2009|     civil|    1|
+|2009|     skill|    1|
+|2009|  increase|    1|
+|2010|     union|    5|
+|2010|      move|    5|
+|2010|   economy|   15|
+|2010|   phoenix|    1|
+|2010|   exports|    2|
+|2010|   getting|    1|
+|2010|  straight|    1|
+|2011|   finding|    1|
+|2011|  colleges|    3|
+|2011|      meet|    5|
++----+----------+-----+
+only showing top 20 rows
+
++---------+---------+-------+
+|    years|     word|average|
++---------+---------+-------+
+|2021-2025|  america|   47.0|
+|2021-2025| american|   46.0|
+|2021-2025|     jobs|   43.0|
+|2017-2021| american|   33.5|
+|2013-2017|  america|   31.0|
+|2017-2021|  america|  30.25|
+|2021-2025|   people|   28.0|
+|2013-2017|      new|   27.5|
+|2009-2013|   people|   27.0|
+|2021-2025|     plan|   26.0|
+|2009-2013|      new|  25.75|
+|2013-2017|       us|  25.25|
+|2021-2025|americans|   25.0|
+|2009-2013|  america|   25.0|
+|2009-2013| american|   24.0|
+|2009-2013|     jobs|  23.75|
+|2021-2025|      one|   23.0|
+|2021-2025|    world|   22.0|
+|2013-2017|   people|   22.0|
+|2017-2021|      new|   22.0|
++---------+---------+-------+
+only showing top 20 rows
+
++---------------+---------+------------+
+|           word|    years|      counts|
++---------------+---------+------------+
+|         nation|2013-2017|[6, 7, 5, 6]|
+|         always|2017-2021|[4, 2, 8, 9]|
+|        partner|2021-2025|         [1]|
+|          1990s|2021-2025|         [1]|
+|       sweeping|2017-2021|   [1, 1, 1]|
+|       products|2021-2025|         [2]|
+|        propose|2013-2017|         [3]|
+|         credit|2017-2021|[1, 1, 1, 1]|
+|      condition|2017-2021|         [1]|
+|congratulations|2017-2021|      [1, 1]|
+|        respect|2017-2021|[3, 1, 4, 1]|
+|         obsess|2009-2013|         [1]|
+|     litigation|2013-2017|         [1]|
+|      somewhere|2013-2017|         [1]|
+|     excitement|2017-2021|         [1]|
+|           cast|2013-2017|   [1, 1, 1]|
+|    inheritance|2017-2021|      [1, 1]|
+|          rests|2017-2021|         [1]|
+|     spacecraft|2013-2017|         [1]|
+|        dealing|2009-2013|         [2]|
++---------------+---------+------------+
+only showing top 20 rows
+
++---------------+---------+------+----+
+|           word|    years|stddev| avg|
++---------------+---------+------+----+
+|         nation|2013-2017|  0.71|   6|
+|         always|2017-2021|  2.86|5.75|
+|        partner|2021-2025|     1|   1|
+|          1990s|2021-2025|     1|   1|
+|       sweeping|2017-2021|   0.0|   1|
+|       products|2021-2025|     2|   2|
+|        propose|2013-2017|     3|   3|
+|         credit|2017-2021|   0.0|   1|
+|      condition|2017-2021|     1|   1|
+|congratulations|2017-2021|   0.0|   1|
+|        respect|2017-2021|   1.3|2.25|
+|         obsess|2009-2013|     1|   1|
+|     litigation|2013-2017|     1|   1|
+|      somewhere|2013-2017|     1|   1|
+|     excitement|2017-2021|     1|   1|
+|           cast|2013-2017|   0.0|   1|
+|    inheritance|2017-2021|   0.0|   1|
+|          rests|2017-2021|     1|   1|
+|     spacecraft|2013-2017|     1|   1|
+|        dealing|2009-2013|     2|   2|
++---------------+---------+------+----+
+only showing top 20 rows
+
++---------------+---------+--------+------+----+
+|           word|    years|nextyear|stddev| avg|
++---------------+---------+--------+------+----+
+|         nation|2013-2017|    2018|  0.71|   6|
+|         always|2017-2021|    2022|  2.86|5.75|
+|        partner|2021-2025|    2026|     1|   1|
+|          1990s|2021-2025|    2026|     1|   1|
+|       sweeping|2017-2021|    2022|   0.0|   1|
+|       products|2021-2025|    2026|     2|   2|
+|        propose|2013-2017|    2018|     3|   3|
+|         credit|2017-2021|    2022|   0.0|   1|
+|      condition|2017-2021|    2022|     1|   1|
+|congratulations|2017-2021|    2022|   0.0|   1|
+|        respect|2017-2021|    2022|   1.3|2.25|
+|         obsess|2009-2013|    2014|     1|   1|
+|     litigation|2013-2017|    2018|     1|   1|
+|      somewhere|2013-2017|    2018|     1|   1|
+|     excitement|2017-2021|    2022|     1|   1|
+|           cast|2013-2017|    2018|   0.0|   1|
+|    inheritance|2017-2021|    2022|   0.0|   1|
+|          rests|2017-2021|    2022|     1|   1|
+|     spacecraft|2013-2017|    2018|     1|   1|
+|        dealing|2009-2013|    2014|     2|   2|
++---------------+---------+--------+------+----+
+only showing top 20 rows
+
++----+----------+-----+
+|year|      word|count|
++----+----------+-----+
+|2009|   working|    4|
+|2009|  progress|    3|
+|2009|   arrived|    2|
+|2009|  continue|    2|
+|2009|flawlessly|    1|
+|2009|     house|    1|
+|2009|  millions|    2|
+|2009|     civil|    1|
+|2009|     skill|    1|
+|2009|  increase|    1|
+|2010|     union|    5|
+|2010|      move|    5|
+|2010|   economy|   15|
+|2010|   phoenix|    1|
+|2010|   exports|    2|
+|2010|   getting|    1|
+|2010|  straight|    1|
+|2011|   finding|    1|
+|2011|  colleges|    3|
+|2011|      meet|    5|
++----+----------+-----+
+only showing top 20 rows
+
++----------+---------+--------+------+------------------+----+----------+-----+
+|      word|    years|nextyear|stddev|               avg|year|      word|count|
++----------+---------+--------+------+------------------+----+----------+-----+
+|        14|2013-2017|    2018|   0.0|                 1|2018|        14|    1|
+|       car|2013-2017|    2018|     1|                 1|2018|       car|    2|
+|     child|2009-2013|    2014|  2.86|              3.25|2014|     child|    5|
+|  daughter|2013-2017|    2018|     1|                 1|2018|  daughter|    1|
+| federally|2009-2013|    2014|     2|                 2|2014| federally|    2|
+|      free|2009-2013|    2014|  0.47|2.3333333333333335|2014|      free|    4|
+|       six|2009-2013|    2014|   0.0|                 1|2014|       six|    1|
+|    system|2009-2013|    2014|   1.3|              6.25|2014|    system|    3|
+|   weapons|2009-2013|    2014|  0.94|2.3333333333333335|2014|   weapons|    1|
+|      year|2013-2017|    2018|  1.48|             17.75|2018|      year|   19|
+|california|2013-2017|    2018|     1|                 1|2018|california|    3|
+|  civilian|2013-2017|    2018|   0.0|                 1|2018|  civilian|    1|
+|    deaths|2013-2017|    2018|     1|                 1|2018|    deaths|    1|
+|   dollars|2013-2017|    2018|  0.94|1.6666666666666667|2018|   dollars|    3|
+|     faith|2013-2017|    2018|   1.0|                 2|2018|     faith|    2|
+|      life|2013-2017|    2018|  1.41|                 3|2018|      life|    2|
+|   neither|2009-2013|    2014|   0.5|               1.5|2014|   neither|    2|
+|      news|2009-2013|    2014|     1|                 1|2014|      news|    1|
+|    remind|2009-2013|    2014|     1|                 1|2014|    remind|    1|
+|  training|2009-2013|    2014|  0.94|2.3333333333333335|2014|  training|    6|
++----------+---------+--------+------+------------------+----+----------+-----+
+only showing top 20 rows
+
++-----------+---------+--------+------+------------------+----+-----------+-----+
+|       word|    years|nextyear|stddev|               avg|year|       word|count|
++-----------+---------+--------+------+------------------+----+-----------+-----+
+|       free|2009-2013|    2014|  0.47|2.3333333333333335|2014|       free|    4|
+|   training|2009-2013|    2014|  0.94|2.3333333333333335|2014|   training|    6|
+|         20|2013-2017|    2018|   0.5|               1.5|2018|         20|    4|
+|  dangerous|2013-2017|    2018|  0.94|1.6666666666666667|2018|  dangerous|    5|
+|     dreams|2009-2013|    2014|  0.82|                 2|2014|     dreams|    6|
+|immigration|2009-2013|    2014|  0.47|1.3333333333333333|2014|immigration|    3|
+|     senate|2013-2017|    2018|   0.0|                 1|2018|     senate|    3|
+|     needed|2009-2013|    2014|   0.5|               1.5|2014|     needed|    4|
+|      seize|2009-2013|    2014|   0.0|                 1|2014|      seize|    2|
+|      dream|2013-2017|    2018|   0.5|               1.5|2018|      dream|    3|
+|      taken|2013-2017|    2018|  0.47|1.6666666666666667|2018|      taken|    3|
+|   building|2009-2013|    2014|  0.82|                 4|2014|   building|    6|
+|      class|2009-2013|    2014|  1.92|              3.25|2014|      class|    9|
+|    officer|2013-2017|    2018|   0.0|                 1|2018|    officer|    3|
+|      stand|2009-2013|    2014|  0.83|              3.25|2014|      stand|    5|
+|       love|2013-2017|    2018|  1.64|              2.25|2018|       love|    7|
+|communities|2009-2013|    2014|   1.3|              2.25|2014|communities|    7|
+|       sick|2009-2013|    2014|   0.0|                 1|2014|       sick|    3|
+|    threats|2009-2013|    2014|  0.43|              1.25|2014|    threats|    3|
+|   anything|2013-2017|    2018|   0.0|                 1|2018|   anything|    4|
++-----------+---------+--------+------+------------------+----+-----------+-----+
+only showing top 20 rows
