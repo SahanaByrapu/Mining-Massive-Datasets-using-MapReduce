@@ -3,10 +3,10 @@ ReadMe File
 Table of Contents :
  ----> main 
         -->code
-          1) CS657_HW4_ALS
-          2) CS567_hw4_SVL
-          3) CS657_HW4_Item_Item_CF
-          4) CS657_hybrid
+          1) ALS
+          2) SVL
+          3) Item_Item_CF
+          4) hybrid
           
 
   -->
@@ -17,10 +17,10 @@ Table of Contents :
   ---->hdfs dfs -put ml-20m /user/sbyrapu/input/
   ----> hdfs dfs -ls -R /user/sbyrapu/input/
 
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 CS657_HW4_Item_Item_CF.py
+spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 Item_Item_CF.py
 
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 CS657_HW4_ALS.py
+spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 ALS.py
 
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 CS657_hybrid.py
+spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 hybrid.py
 
-spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 CS657_Hw4_SVL.py
+spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode client --num-executors 1 --driver-memory 8192m --executor-memory 8192m --executor-cores 1 SVL.py
